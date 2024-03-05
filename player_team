@@ -1,23 +1,32 @@
 from team import Team
 
 class PlayerTeam(Team):
-  def __init__(self, members, nb_warriors, nb_hunters, nb_wizards, damage, loot, flee):
+  def __init__(self, damage, loot, flee):
     super().__init__()
-    self.__nb_warriors = nb_warriors
-    self.__nb_hunters = nb_hunters
-    self.__nb_wizards = nb_wizards
+    self.__nb_warriors = 0
+    self.__nb_hunters = 0
+    self.__nb_wizards = 0
     self.__damage = damage
     self.__loot = loot
     self.__flee = flee
     
     def get_team_damage(self):
-      return self.__damage * (self.__nb_warriors + self.__nb_hunters + self.__nb_wizards)
+      damage = 0
+      for member in self._members :
+        damage = damage + member.degat
+      return damage
 
     def get_team_chance(self):
-      return self.__loot * (self.__nb_warriors + self.__nb_hunters + self.__nb_wizards)
+      chance = 0
+      for member in self._members :
+        chance = chance + member.chance
+      return chance
 
     def get_team_flee(self):
-      return self.__flee * (self.__nb_warriors + self.__nb_hunters + self.__nb_wizards)
+      fuite = 0
+      for member in self._members :
+        fuite = fuite + member.fuite
+      return fuite
 
     def get_nb_warriors(self):
       return self.__nb_warriors
